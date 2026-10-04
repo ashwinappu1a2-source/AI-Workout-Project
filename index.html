@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Workout</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+
+        <div class="logo">
+            AI<span>WORKOUT</span>
+        </div>
+
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#features">Features</a>
+            <a href="#assessment">Get Started</a>
+        </div>
+
+    </nav>
+
+
+    <!-- Home Section -->
+    <section id="home" class="hero">
+
+        <div class="hero-content">
+
+            <p class="small-title">AI POWERED FITNESS</p>
+
+            <h1>
+                Your Personal
+                <span>AI Workout</span>
+                Assistant
+            </h1>
+
+            <p class="hero-text">
+                Generate personalized workout plans based on your
+                fitness goals, experience level, equipment and workout
+                frequency.
+            </p>
+
+            <a href="#assessment" class="main-button">
+                Get Started
+            </a>
+
+        </div>
+
+        <div class="hero-card">
+
+            <div class="card-icon">🏋️</div>
+
+            <h3>Smart Workout Planning</h3>
+
+            <p>
+                Personalized workout splits designed according
+                to your fitness needs.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- Features -->
+    <section id="features" class="features-section">
+
+        <div class="section-heading">
+
+            <p class="small-title">FEATURES</p>
+
+            <h2>Everything You Need</h2>
+
+            <p>
+                A simple fitness assistant designed for personalized
+                training and exercise monitoring.
+            </p>
+
+        </div>
+
+
+        <div class="feature-container">
+
+            <div class="feature-card">
+
+                <div class="feature-icon">🤖</div>
+
+                <h3>AI Workout Generator</h3>
+
+                <p>
+                    Generate personalized workout splits based on
+                    your fitness goals and experience.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <div class="feature-icon">📹</div>
+
+                <h3>Video Monitoring</h3>
+
+                <p>
+                    Analyze exercise movements and receive feedback
+                    on basic exercise form.
+                </p>
+                <a href="monitor.html" class="feature-button">
+    🎥 Start Video Monitoring
+</a>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <div class="feature-icon">📊</div>
+
+                <h3>Progress Tracking</h3>
+
+                <p>
+                    Track your workout history and monitor your
+                    fitness progress.
+                </p>
+                <a href="progress.html" class="feature-button">
+    📊 View Progress
+</a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Assessment -->
+    <section id="assessment" class="assessment-section">
+
+        <div class="section-heading">
+
+            <p class="small-title">PERSONALIZED WORKOUT</p>
+
+            <h2>Tell Us About Yourself</h2>
+
+            <p>
+                Enter your details to generate a personalized workout plan.
+            </p>
+
+        </div>
+
+
+        <div class="form-container">
+
+            <form id="workoutForm">
+
+
+                <!-- Age -->
+                <div class="form-group">
+
+                    <label for="age">
+                        Age
+                    </label>
+
+                    <input
+                        type="number"
+                        id="age"
+                        placeholder="Enter your age"
+                        min="13"
+                        max="80"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- Gender -->
+                <div class="form-group">
+
+                    <label for="gender">
+                        Gender
+                    </label>
+
+                    <select id="gender" required>
+
+                        <option value="">
+                            Select gender
+                        </option>
+
+                        <option value="male">
+                            Male
+                        </option>
+
+                        <option value="female">
+                            Female
+                        </option>
+
+                        <option value="other">
+                            Other
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- Fitness Goal -->
+                <div class="form-group">
+
+                    <label for="goal">
+                        Fitness Goal
+                    </label>
+
+                    <select id="goal" required>
+
+                        <option value="">
+                            Select your goal
+                        </option>
+
+                        <option value="muscle">
+                            Muscle Gain
+                        </option>
+
+                        <option value="weightloss">
+                            Weight Loss
+                        </option>
+
+                        <option value="strength">
+                            Strength
+                        </option>
+
+                        <option value="fitness">
+                            General Fitness
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- Experience -->
+                <div class="form-group">
+
+                    <label for="experience">
+                        Experience Level
+                    </label>
+
+                    <select id="experience" required>
+
+                        <option value="">
+                            Select experience
+                        </option>
+
+                        <option value="beginner">
+                            Beginner
+                        </option>
+
+                        <option value="intermediate">
+                            Intermediate
+                        </option>
+
+                        <option value="advanced">
+                            Advanced
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- Equipment -->
+                <div class="form-group">
+
+                    <label for="equipment">
+                        Available Equipment
+                    </label>
+
+                    <select id="equipment" required>
+
+                        <option value="">
+                            Select equipment
+                        </option>
+
+                        <option value="none">
+                            No Equipment
+                        </option>
+
+                        <option value="dumbbell">
+                            Dumbbells
+                        </option>
+
+                        <option value="gym">
+                            Full Gym
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- Workout Days -->
+                <div class="form-group">
+
+                    <label for="days">
+                        Workout Days Per Week
+                    </label>
+
+                    <select id="days" required>
+
+                        <option value="">
+                            Select days
+                        </option>
+
+                        <option value="3">
+                            3 Days
+                        </option>
+
+                        <option value="4">
+                            4 Days
+                        </option>
+
+                        <option value="5">
+                            5 Days
+                        </option>
+
+                        <option value="6">
+                            6 Days
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <button type="submit" class="generate-button">
+                    🤖 Generate My Workout
+                </button>
+
+            </form>
+
+        </div>
+
+    </section>
+
+
+    <!-- Workout Result -->
+    <section id="result" class="result-section">
+
+        <div class="section-heading">
+
+            <p class="small-title">YOUR RESULT</p>
+
+            <h2>Your Personalized Workout</h2>
+
+        </div>
+
+
+        <div id="workoutResult" class="workout-result">
+
+            <!-- JavaScript will insert workout here -->
+
+        </div>
+
+    </section>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <h3>AI WORKOUT</h3>
+
+        <p>
+            AI-Generated Workout Split with Video Monitoring
+        </p>
+
+        <p class="copyright">
+            Mini Project
+        </p>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>

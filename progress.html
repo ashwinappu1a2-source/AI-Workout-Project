@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Workout - Progress</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #0b0f19;
+            color: white;
+        }
+
+        .navbar {
+            background: #111625;
+            padding: 18px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: #8c72ff;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .back {
+            color: white;
+            text-decoration: none;
+            background: #7c5cff;
+            padding: 10px 18px;
+            border-radius: 8px;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 45px auto;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #aaa;
+            margin-bottom: 35px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .card {
+            background: #111625;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .icon {
+            font-size: 35px;
+        }
+
+        .number {
+            font-size: 36px;
+            color: #8c72ff;
+            font-weight: bold;
+            margin: 12px 0;
+        }
+
+        .label {
+            color: #aaa;
+        }
+
+        .section {
+            background: #111625;
+            margin-top: 25px;
+            padding: 30px;
+            border-radius: 15px;
+        }
+
+        .section h2 {
+            margin-bottom: 20px;
+        }
+
+        .exercise {
+            display: flex;
+            justify-content: space-between;
+            background: #1b2133;
+            padding: 18px;
+            margin: 12px 0;
+            border-radius: 8px;
+        }
+
+        .exercise span:last-child {
+            color: #8c72ff;
+            font-weight: bold;
+        }
+
+        .button {
+            display: block;
+            width: fit-content;
+            margin: 30px auto 0;
+            background: #7c5cff;
+            color: white;
+            text-decoration: none;
+            padding: 14px 25px;
+            border-radius: 8px;
+        }
+
+        @media (max-width: 700px) {
+            .cards {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="logo">🤖 AIWORKOUT</div>
+        <a href="index.html" class="back">← Home</a>
+    </nav>
+
+    <div class="container">
+
+        <h1>📊 Progress Dashboard</h1>
+
+        <p class="subtitle">
+            Track your workout activity and exercise performance.
+        </p>
+
+        <div class="cards">
+
+            <div class="card">
+                <div class="icon">🏋️</div>
+                <div class="number">12</div>
+                <div class="label">Total Workouts</div>
+            </div>
+
+            <div class="card">
+                <div class="icon">🔥</div>
+                <div class="number" id="totalReps">0</div>
+                <div class="label">Total Reps</div>
+            </div>
+
+            <div class="card">
+                <div class="icon">📅</div>
+                <div class="number">5</div>
+                <div class="label">Day Streak</div>
+            </div>
+
+        </div>
+
+        <div class="section">
+
+            <h2>Exercise Performance</h2>
+
+            <div class="exercise">
+                <span>🏋️ Squats</span>
+                <span>85 Reps</span>
+            </div>
+
+            <div class="exercise">
+                <span>💪 Push-ups</span>
+                <span>40 Reps</span>
+            </div>
+
+            <div class="exercise">
+                <span>💪 Bicep Curls</span>
+                <span>30 Reps</span>
+            </div>
+
+        </div>
+
+        <a href="monitor.html" class="button">
+            🎥 Start Video Monitoring
+        </a>
+
+    </div>
+<script>
+    const savedReps = localStorage.getItem("totalReps");
+
+    if (savedReps !== null) {
+        document.getElementById("totalReps").textContent = savedReps;
+    }
+</script>
+</body>
+</html>

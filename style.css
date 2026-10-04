@@ -1,0 +1,501 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #0b0f19;
+    color: white;
+}
+
+
+/* NAVBAR */
+
+.navbar {
+    height: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 8%;
+
+    background: #0b0f19;
+
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    border-bottom: 1px solid #202635;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.logo span {
+    color: #7c5cff;
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-links a {
+    color: #c8ccd8;
+    text-decoration: none;
+    font-size: 15px;
+}
+
+.nav-links a:hover {
+    color: white;
+}
+
+
+/* HERO */
+
+.hero {
+    min-height: 650px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 50px;
+
+    padding: 80px 10%;
+
+    background:
+        radial-gradient(
+            circle at 80% 30%,
+            #34226b,
+            transparent 35%
+        );
+}
+
+.hero-content {
+    max-width: 650px;
+}
+
+.small-title {
+    color: #8c72ff;
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 15px;
+}
+
+.hero h1 {
+    font-size: 62px;
+
+    line-height: 1.05;
+
+    margin-bottom: 25px;
+}
+
+.hero h1 span {
+    color: #8c72ff;
+}
+
+.hero-text {
+    color: #aeb4c2;
+
+    font-size: 18px;
+
+    line-height: 1.7;
+
+    margin-bottom: 35px;
+}
+
+.main-button,
+.generate-button {
+    display: inline-block;
+
+    border: none;
+
+    background: #7c5cff;
+
+    color: white;
+
+    padding: 15px 28px;
+
+    border-radius: 8px;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    text-decoration: none;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.main-button:hover,
+.generate-button:hover {
+    background: #6848ee;
+
+    transform: translateY(-2px);
+}
+
+
+/* HERO CARD */
+
+.hero-card {
+    width: 330px;
+
+    padding: 40px;
+
+    background: #151a28;
+
+    border: 1px solid #292f40;
+
+    border-radius: 20px;
+
+    text-align: center;
+
+    box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+}
+
+.card-icon {
+    font-size: 65px;
+
+    margin-bottom: 20px;
+}
+
+.hero-card h3 {
+    font-size: 23px;
+
+    margin-bottom: 15px;
+}
+
+.hero-card p {
+    color: #aeb4c2;
+
+    line-height: 1.6;
+}
+
+
+/* SECTIONS */
+
+.features-section,
+.assessment-section,
+.result-section {
+    padding: 90px 10%;
+}
+
+.section-heading {
+    text-align: center;
+
+    max-width: 700px;
+
+    margin: 0 auto 50px;
+}
+
+.section-heading h2 {
+    font-size: 38px;
+
+    margin-bottom: 15px;
+}
+
+.section-heading > p:last-child {
+    color: #9da4b4;
+
+    line-height: 1.6;
+}
+
+
+/* FEATURES */
+
+.feature-container {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 25px;
+}
+
+.feature-card {
+    background: #151a28;
+
+    border: 1px solid #292f40;
+
+    padding: 35px;
+
+    border-radius: 15px;
+
+    transition: 0.3s;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+
+    border-color: #7c5cff;
+}
+
+.feature-icon {
+    font-size: 35px;
+
+    margin-bottom: 20px;
+}
+
+.feature-card h3 {
+    margin-bottom: 12px;
+}
+
+.feature-card p {
+    color: #9da4b4;
+
+    line-height: 1.6;
+}
+
+
+/* ASSESSMENT */
+
+.assessment-section {
+    background: #0f1420;
+}
+
+.form-container {
+    max-width: 650px;
+
+    margin: auto;
+
+    background: #151a28;
+
+    padding: 40px;
+
+    border-radius: 18px;
+
+    border: 1px solid #292f40;
+}
+
+.form-group {
+    margin-bottom: 22px;
+}
+
+.form-group label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    font-weight: bold;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+
+    padding: 14px;
+
+    background: #0b0f19;
+
+    border: 1px solid #343b4d;
+
+    border-radius: 7px;
+
+    color: white;
+
+    font-size: 15px;
+
+    outline: none;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #7c5cff;
+}
+
+.generate-button {
+    width: 100%;
+
+    margin-top: 10px;
+}
+
+
+/* RESULT */
+
+.result-section {
+    display: none;
+}
+
+.workout-result {
+    max-width: 850px;
+
+    margin: auto;
+}
+
+.result-header {
+    background: #151a28;
+
+    border: 1px solid #292f40;
+
+    border-radius: 15px;
+
+    padding: 25px;
+
+    margin-bottom: 25px;
+}
+
+.result-header h3 {
+    margin-bottom: 15px;
+}
+
+.result-info {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+}
+
+.info-tag {
+    background: #26203f;
+
+    color: #cfc5ff;
+
+    padding: 8px 14px;
+
+    border-radius: 20px;
+
+    font-size: 13px;
+}
+
+.workout-day {
+    background: #151a28;
+
+    border: 1px solid #292f40;
+
+    border-radius: 15px;
+
+    padding: 25px;
+
+    margin-bottom: 18px;
+}
+
+.workout-day h3 {
+    color: #9b85ff;
+
+    margin-bottom: 20px;
+}
+
+.exercise {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 15px 0;
+
+    border-bottom: 1px solid #292f40;
+}
+
+.exercise:last-child {
+    border-bottom: none;
+}
+
+.exercise-name {
+    font-weight: bold;
+}
+
+.exercise-details {
+    color: #9da4b4;
+
+    font-size: 14px;
+}
+
+
+/* FOOTER */
+
+footer {
+    text-align: center;
+
+    padding: 45px 20px;
+
+    background: #080b12;
+
+    border-top: 1px solid #202635;
+}
+
+footer h3 {
+    margin-bottom: 10px;
+}
+
+footer p {
+    color: #858c9c;
+
+    margin-bottom: 8px;
+}
+
+.copyright {
+    font-size: 13px;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 800px) {
+
+    .nav-links {
+        display: none;
+    }
+
+    .hero {
+        flex-direction: column;
+
+        text-align: center;
+
+        padding: 70px 6%;
+    }
+
+    .hero h1 {
+        font-size: 42px;
+    }
+
+    .hero-card {
+        width: 100%;
+    }
+
+    .feature-container {
+        grid-template-columns: 1fr;
+    }
+
+    .features-section,
+    .assessment-section,
+    .result-section {
+        padding: 70px 6%;
+    }
+
+    .form-container {
+        padding: 25px;
+    }
+
+}
+.feature-button {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 18px;
+    background: #7c5cff;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.feature-button:hover {
+    background: #6848e8;
+}

@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Workout - Video Monitoring</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #0b0f19;
+            color: white;
+            min-height: 100vh;
+        }
+
+        .navbar {
+            background: #111625;
+            padding: 18px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #8c72ff;
+        }
+
+        .back {
+            color: white;
+            text-decoration: none;
+            background: #7c5cff;
+            padding: 10px 18px;
+            border-radius: 8px;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 40px auto;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #aaa;
+            margin-bottom: 30px;
+        }
+
+        .monitor-box {
+            background: #111625;
+            padding: 25px;
+            border-radius: 15px;
+            max-width: 850px;
+            margin: auto;
+        }
+
+        select {
+            width: 100%;
+            padding: 14px;
+            background: #1b2133;
+            color: white;
+            border: 1px solid #444;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        video {
+            width: 100%;
+            max-width: 700px;
+            height: 400px;
+            background: black;
+            border-radius: 12px;
+            object-fit: cover;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 14px 25px;
+            border: none;
+            border-radius: 8px;
+            background: #7c5cff;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #6848e8;
+        }
+
+        .status {
+            margin-top: 25px;
+            padding: 18px;
+            background: #1b2133;
+            border-radius: 10px;
+            font-size: 18px;
+        }
+
+        .status span {
+            color: #7cff9e;
+            font-weight: bold;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 28px;
+            }
+
+            video {
+                height: 280px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="logo">🤖 AIWORKOUT</div>
+        <a href="index.html" class="back">← Back</a>
+    </nav>
+
+    <div class="container">
+
+        <h1>🎥 AI Video Monitoring</h1>
+
+        <p class="subtitle">
+            Select an exercise and use your camera to monitor your workout form.
+        </p>
+
+        <div class="monitor-box">
+
+            <select id="exercise">
+                <option value="">Select Exercise</option>
+                <option value="squat">Squat</option>
+                <option value="pushup">Push-up</option>
+                <option value="curl">Bicep Curl</option>
+            </select>
+
+            <video id="camera" autoplay playsinline></video>
+
+            <br>
+
+            <button onclick="startCamera()">
+                📷 Start Camera
+            </button>
+
+            <div class="status">
+                Exercise: <span id="exerciseName">Not Selected</span>
+                <br><br>
+                Status: <span id="statusText">Waiting for camera...</span>
+                <br><br>
+Reps: <span id="repCount">0</span>
+<br><br>
+
+<button onclick="resetReps()">
+    🔄 Reset Reps
+</button>
+            </div>
+
+        </div>
+
+    </div>
+<!-- MediaPipe Pose -->
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/pose/pose.js"></script>
+
+<script>
+
+const pose = new Pose({
+    locateFile: (file) => {
+        return `https://cdn.jsdelivr.net/npm/@mediapipe/pose/${file}`;
+    }
+});
+
+pose.setOptions({
+    modelComplexity: 1,
+    smoothLandmarks: true,
+    enableSegmentation: false,
+    minDetectionConfidence: 0.5,
+    minTrackingConfidence: 0.5
+});
+
+pose.onResults((results) => {
+
+    if (results.poseLandmarks) {
+
+        statusText.textContent = "Body detected - AI Monitoring Active";
+
+        const landmarks = results.poseLandmarks;
+
+        // Left leg points
+        const leftHip = landmarks[23];
+        const leftKnee = landmarks[25];
+        const leftAnkle = landmarks[27];
+
+        // Right leg points
+        const rightHip = landmarks[24];
+        const rightKnee = landmarks[26];
+        const rightAnkle = landmarks[28];
+
+        // Calculate approximate leg angles
+        const leftAngle = calculateAngle(leftHip, leftKnee, leftAnkle);
+        const rightAngle = calculateAngle(rightHip, rightKnee, rightAnkle);
+
+        const averageAngle = (leftAngle + rightAngle) / 2;
+
+        if (exercise.value === "squat") {
+
+    // User is going down but has not reached squat depth
+    if (averageAngle >= 120 && averageAngle < 160 && squatState === "up") {
+
+        statusText.textContent = "🟡 Go Lower";
+
+    }
+
+    // User has reached squat position
+    if (averageAngle < 120 && squatState === "up") {
+
+        squatState = "down";
+
+        statusText.textContent = "🟢 Good! Squat position detected";
+
+    }
+
+    // User has stood back up - count the rep
+    if (averageAngle > 160 && squatState === "down") {
+
+        squatState = "up";
+
+        repCount++;
+
+        repCountDisplay.textContent = repCount;
+        localStorage.setItem("totalReps", repCount);
+
+        statusText.textContent = "🟢 Good Form! Rep counted";
+
+    }
+
+}
+
+    } else {
+
+        statusText.textContent =
+            "No body detected - Adjust your position";
+
+    }
+
+});
+        const exercise = document.getElementById("exercise");
+        let repCount = 0;
+let squatState = "up";
+
+const repCountDisplay = document.getElementById("repCount");
+function resetReps() {
+    repCount = 0;
+    repCountDisplay.textContent = "0";
+    squatState = "up";
+    statusText.textContent = "Counter reset";
+}
+        const exerciseName = document.getElementById("exerciseName");
+        const statusText = document.getElementById("statusText");
+        const camera = document.getElementById("camera");
+
+        exercise.addEventListener("change", function() {
+
+            if (this.value === "squat") {
+                exerciseName.textContent = "Squat";
+            }
+            else if (this.value === "pushup") {
+                exerciseName.textContent = "Push-up";
+            }
+            else if (this.value === "curl") {
+                exerciseName.textContent = "Bicep Curl";
+            }
+            else {
+                exerciseName.textContent = "Not Selected";
+            }
+
+        });
+
+
+        async function startCamera() {
+
+    try {
+
+        const stream = await navigator.mediaDevices.getUserMedia({
+            video: true,
+            audio: false
+        });
+
+        camera.srcObject = stream;
+
+        camera.onloadeddata = () => {
+            detectPose();
+        };
+
+        statusText.textContent =
+            "Camera active - Starting AI monitoring...";
+
+    }
+    catch (error) {
+
+        statusText.textContent =
+            "Camera access denied. Please allow camera permission.";
+
+        console.log(error);
+
+    }
+
+}
+async function detectPose() {
+
+    if (camera.readyState >= 2) {
+
+        await pose.send({
+            image: camera
+        });
+
+    }
+    requestAnimationFrame(detectPose);
+}
+
+function calculateAngle(a, b, c) {
+
+    const radians =
+        Math.atan2(c.y - b.y, c.x - b.x) -
+        Math.atan2(a.y - b.y, a.x - b.x);
+
+    let angle = Math.abs(radians * 180.0 / Math.PI);
+
+    if (angle > 180) {
+        angle = 360 - angle;
+    }
+
+    return angle;
+}
+
+
+
+    
+    </script>
+
+
+
+</body>
+</html>
